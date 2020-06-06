@@ -13,6 +13,7 @@ function init() {
       $.LoadingOverlay("show");
       e.preventDefault();
       updateSettings();
+      $("form#form-mqtt-server [type='submit']").attr("disabled","");
       connect();
     });
 
@@ -33,6 +34,7 @@ function init() {
     $("#reset-messages").on("click", function(e){
       e.preventDefault();
       $("#input-messages").val("")
+      printMessage();
     });
     
     printMessage();
@@ -51,9 +53,9 @@ function updateSettings(){
 function connect(){
   //https://www.cloudmqtt.com/docs/websocket.html
   
-
+  client_id = "web_" + parseInt(Math.random() * 100, 10);
   // Create a mqtt_client instance
-  mqtt_client = new Paho.MQTT.Client(settings.mqtt_server, 36246, "web_" + parseInt(Math.random() * 100, 10));
+  mqtt_client = new Paho.MQTT.Client(settings.mqtt_server, parseInt(settings.mqtt_port), client_id);
   //Example mqtt_client = new Paho.MQTT.client("m11.cloudmqtt.com", 32903, "web_" + parseInt(Math.random() * 100, 10));
 
   // set callback handlers
@@ -61,7 +63,8 @@ function connect(){
   mqtt_client.onMessageArrived = onMessageArrived;
   mqtt_client.onMessageDelivered = onMessageDelivered;
   var options = {
-    useSSL: true,
+    useSSL: $("#input-mqtt-use-ssl").is(":checked"),
+    cleanSession: $("#input-mqtt-clean-session").is(":checked"),
     userName: settings.mqtt_username,
     password: settings.mqtt_password,
     onSuccess: onConnect,
@@ -82,6 +85,7 @@ function onConnect() {
   // message.topic = settings.mqtt_topic;
   // mqtt_client.send(message);
   connected = true;
+  $("#input-mqtt_client_id").val(client_id);
   $("#submit-message").attr("disabled",false);
   sendMessage()
   $("#badge-mqtt-server-status").text("connected").addClass("badge-success").removeClass("badge-secondary");
@@ -96,6 +100,7 @@ function doFail(e) {
 // called when the mqtt_client loses its connection
 function onConnectionLost(responseObject) {
   if (responseObject.errorCode !== 0) {
+    $("form#form-mqtt-server [type='submit']").attr("disabled", false);
     showModal(responseObject.errorMessage, "onConnectionLost", true);
     console.log("onConnectionLost:" + responseObject.errorMessage);
   }
@@ -141,14 +146,17 @@ function showModal(content, title, isCode) {
 
 function printMessage(messageString){
   var count = 0;
+  var howmany = parseInt($("#input-messages-howmany").val());
   if (messageString == "undefined") messageString = false;
   if (messageString){
-    var rowSeparator = "\r";
-    var content = $("#input-messages").text().trim();
+    var rowSeparator = "\n";
+    var content = $("#input-messages").val().trim();
     content = messageString + rowSeparator + content;
-    $("#input-messages").text(content);
+    content = content.split(rowSeparator).slice(0, howmany).join(rowSeparator);
+    $("#input-messages").val(content);
     count = content.split(rowSeparator).length;
   }
+  
   $("#messagesInfo").text("count: " + count);
 }
 

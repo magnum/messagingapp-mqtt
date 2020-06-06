@@ -40,6 +40,14 @@
             <h2>server <span id="badge-mqtt-server-status" class="badge badge-secondary">disconnected </span></h2>
             <form id="form-mqtt-server">
               <div class="form-row">
+                <div class="col col-md-8">
+                  <div class="form-group">
+                    <label for="input-server">client_id</label>
+                    <input type="text" class="form-control" id="input-mqtt_client_id" placeholder="" disabled>
+                  </div>
+                </div>
+              </div>
+              <div class="form-row">
                   <div class="col col-md-8">
                     <div class="form-group">
                       <label for="input-server">server</label>
@@ -64,7 +72,17 @@
                     <input type="password" class="form-control" id="input-mqtt_password" placeholder="password" required>
                   </div>
                   
-                  <button type="submit" id="submit-server" class="btn btn-primary">Connect</button>
+                  <button type="submit" id="submit-server" class="btn btn-primary">Connect</button> 
+                  <div class="form-check form-check-inline">
+                    <input type="checkbox" class="form-check-input" id="input-mqtt-use-ssl" checked>
+                    <label class="form-check-label" for="input-mqtt-use-ssl">use SSL</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input type="checkbox" class="form-check-input" id="input-mqtt-clean-session">
+                    <label class="form-check-label" for="input-mqtt-clean-session">clean session</label>
+                  </div>
+
+                                
                 </div>
               </div>
             </form>
@@ -81,19 +99,12 @@
                   </div>
                   <div class="form-group">
                     <label for="input-message-string">messageString</label>
-                    <textarea type="text" class="form-control" id="input-message-string" placeholder="message string" rows=3
-                      required></textarea>
+                    <textarea type="text" class="form-control" id="input-message-string" placeholder="message string" rows=3></textarea>
                   </div>
               </div>
             </div>
             <div class="form-row">
-              <div class="col col-md-4">
-                <div class="form-check form-check-inline">
-                  <input type="checkbox" class="form-check-input" id="input-message-retain">
-                  <label class="form-check-label" for="input-message-retain">Retain?</label>
-                </div>
-              </div>
-              <div class="col col-md-8">
+              <div class="col-12">
                 <div class="form-group form-group">
                   <!-- <label for="input-message-qos">qos</label> -->
                   <select class="form-control" id="input-message-qos">
@@ -107,7 +118,12 @@
             <div class="form-row">
               <div class="col-12">
                 <button type="submit" id="submit-message" class="btn btn-primary" disabled>Send</button>
-                <a href="https://www.eclipse.org/paho/files/jsdoc/Paho.MQTT.Client.html" target="_blank">see documentation</a>
+                <div class="form-check form-check-inline">
+                  <input type="checkbox" class="form-check-input" id="input-message-retain">
+                  <label class="form-check-label" for="input-message-retain">
+                    <a href="https://mosquitto.org/man/mqtt-7.html" target="_blank">retain</a>
+                  </label>
+                </div>
               </div>
             </div>
           </form>
@@ -122,6 +138,10 @@
               <textarea type="text" class="form-control" id="input-messages" placeholder="" rows=5></textarea>
               <small id="messagesInfo" class="form-text text-muted"></small>
             </div>
+            <div class="form-group">
+              <label for="input-messages-howmany">how many messages</label>
+              <input type="number" class="form-control" id="input-messages-howmany" placeholder="mqtt_topic" value="100">
+            </div>
             <button type="reset" id="reset-messages" class="btn btn-primary">Reset</button>
           </form>
         </div>
@@ -132,18 +152,14 @@
         <div class="col-12">
           <h3>links</h3>
           <ul>
-            <li>
-              <a href="https://api.cloudmqtt.com/console/82661466/websocket" target="_blank">cloudmqtt websocket web
-                interface</a>
-            </li>
-            <li>
-              <a href="https://github.com/magnum/messagingapp-mqtt" target="_blank">git repository</a>
-            </li>
+            <li><a href="https://www.eclipse.org/paho/files/jsdoc/Paho.MQTT.Client.html" target="_blank">Eclipse Paho JavaScript Client docs</a></li>
+            <li><a href="https://api.cloudmqtt.com/console/82661466/websocket" target="_blank">Cloudmqtt websocket web interface</a></li>
+            <li><a href="https://github.com/magnum/messagingapp-mqtt" target="_blank">git repository</a></li>
           </ul>
         </div>
       </div>
 
-      <footer class="row">
+      <footer class="row mb-4">
         <div class="col">
           Developed by <a href="http://www.antoniomolinari.com" target="_blank">http://www.antoniomolinari.com</a>
         </div>

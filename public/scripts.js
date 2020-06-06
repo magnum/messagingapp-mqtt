@@ -15,18 +15,18 @@ function init() {
     $('#input-mqtt_port').val(settings.mqtt_port);
     $('#input-mqtt_username').val(settings.mqtt_username);
     $('#input-mqtt_password').val(settings.mqtt_password);
-    $('#input-mqtt_destinationName').val(settings.mqtt_destinationName);
+    $("#input-mqtt_destinationName").val(settings.mqtt_destinationName);
 
-    $("#submit-server").on("click", function(e){
+    $("form#form-mqtt-server").on("submit", function (e) {
       e.preventDefault();
       updateSettings();
       connect();
-    })
+    });
 
-    $("#submit-message").on("click", function (e) {
+    $("form#form-mqtt-message").on("submit", function (e) {
       e.preventDefault();
       sendMessage();
-    })
+    });
 
     default_message_interval = setInterval(function(){
       var m = "message sent at "+moment().format();

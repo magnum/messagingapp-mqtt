@@ -35,7 +35,7 @@
       <div class="row mt-4">
         <div class="col-12 col-md-6">
             <h2>server <span id="badge-mqtt-serber-status" class="badge badge-secondary">disconnected </span></h2>
-            <form>
+            <form id="form-mqtt-server">
               <div class="form-group">
                 <label for="input-server">server</label>
                 <input type="text" class="form-control" id="input-mqtt_server" placeholder="server" required>
@@ -64,7 +64,7 @@
 
         <div class="col-12 col-md-6">
           <h2>message</h2>
-          <form>
+          <form id="form-mqtt-message">
             <div class="form-group">
               <label for="input-topic">destinationName</label>
               <input type="text" class="form-control" id="input-mqtt_destinationName" placeholder="mqtt_destinationName" value="test" required>
@@ -102,6 +102,8 @@
       </footer>
 
     </div>
+
+
   </body>
 
 </html>

@@ -113,15 +113,15 @@ function onMessageArrived(message) {
 }
 
 
-function sendMessage(topic, message){
+function sendMessage(){
   $.LoadingOverlay("show");
   var topic = $('#input-mqtt_topic').val();
   var string = $('#input-message-string').val();
   var qos = parseInt($("#input-message-qos").val());
   var retained = $("#input-message-retain").is(":checked");
   mqtt_client.subscribe(topic);
-  message = new Paho.MQTT.Message(string);
-  message.destinationName = topic;
+  // message = new Paho.MQTT.Message(string);
+  // message.destinationName = topic;
   //mqtt_client.send(message); //https://www.eclipse.org/paho/files/jsdoc/Paho.MQTT.Client.html
   console.log('sending message: "'+string+'", topic: '+topic+', qos: '+qos+', retained: '+retained);
   mqtt_client.send(topic, string, qos, retained);

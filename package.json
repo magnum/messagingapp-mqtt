@@ -1,0 +1,19 @@
+{
+  "name": "messagingapp-mqtt",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "keywords": [
+    "https://git.heroku.com/messagingapp-mqtt.git"
+  ],
+  "author": "antoniomolinari@me.com",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mqtt": "^4.1.0"
+  }
+}

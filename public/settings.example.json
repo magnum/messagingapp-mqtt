@@ -1,0 +1,7 @@
+{
+  "mqtt_server": "soldier-01.cloudmqtt.com",
+  "mqtt_port": 123456,
+  "mqtt_username": "your_username",
+  "mqtt_password": "yous_password",
+  "mqtt_destinationName": "/cloudmqtt"
+}

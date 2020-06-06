@@ -75,11 +75,15 @@
                   <button type="submit" id="submit-server" class="btn btn-primary">Connect</button> 
                   <div class="form-check form-check-inline">
                     <input type="checkbox" class="form-check-input" id="input-mqtt-use-ssl" checked>
-                    <label class="form-check-label" for="input-mqtt-use-ssl">use SSL</label>
+                    <label class="form-check-label" for="input-mqtt-use-ssl">ssl</label>
                   </div>
                   <div class="form-check form-check-inline">
                     <input type="checkbox" class="form-check-input" id="input-mqtt-clean-session">
-                    <label class="form-check-label" for="input-mqtt-clean-session">clean session</label>
+                    <label class="form-check-label" for="input-mqtt-clean-session">clean</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input type="checkbox" class="form-check-input" id="input-mqtt-send-test-on-connect">
+                    <label class="form-check-label" for="input-mqtt-send-test-on-connect">send test?</label>
                   </div>
 
                                 
@@ -109,7 +113,7 @@
             <div class="form-row">
               <div class="col-12">
                 <div class="form-group form-group">
-                  <!-- <label for="input-message-qos">qos</label> -->
+                  <label for="input-message-qos">qos</label>
                   <select class="form-control" id="input-message-qos">
                     <option value="0">Best effort (default)</option>
                     <option value="1">At least once</option>

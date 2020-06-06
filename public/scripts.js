@@ -87,8 +87,8 @@ function onConnect() {
   connected = true;
   $("#input-mqtt_client_id").val(client_id);
   $("#submit-message").attr("disabled",false);
-  sendMessage()
   $("#badge-mqtt-server-status").text("connected").addClass("badge-success").removeClass("badge-secondary");
+  if ($("#input-mqtt-send-test-on-connect").is(":checked")) sendMessage();
 }
 
 

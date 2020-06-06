@@ -8,7 +8,7 @@ $(function () {
 })
 
 function init() {
-  $.getJSON('./settings.json', function (data) {
+  $.getJSON('./settings', function (data) {
     settings = data;
     console.log(data)
     $('#input-mqtt_server').val(settings.mqtt_server);

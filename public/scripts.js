@@ -1,5 +1,9 @@
 
 function init() {
+  $.LoadingOverlaySetup({
+    fade: [10, 10]
+  });
+  
   $.getJSON('./settings', function (data) {
     settings = data;
     console.log(data)
